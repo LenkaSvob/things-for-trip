@@ -1,53 +1,97 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Things4Trip
 {
-    class Event
+    public abstract class Event
     {
-        public string TravelerName { get; set; }
-        public string EventName { get; set; }
+        public string UserName { get; private set; }
+        public string EventName { get; private set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
+        public string Duration { get; set; }
+        public bool IsAbroad { get; set; }
 
-        public Event(string travelerName, string eventName, DateTime startDateTime, DateTime endDateTime)
+        public Event(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
         {
-            TravelerName = travelerName;
+            UserName = userName;
             EventName = eventName;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
+            Duration = duration;
+            IsAbroad = isAbroad;
+            string[] itemsForAllEvents = new string[] { "keys", "phone", "condom" };
+            Items.AddRange(itemsForAllEvents);
+            if (isAbroad)
+            {
+                string[] itemsForAbroadEvent = new string[] { "passport", "travelInsurance", "Vaccinations", "foreignCurrency" };
+                Items.AddRange(itemsForAbroadEvent);
+            }
         }
+
+        public abstract void AddDefaultItems();
+        public List<string> Items { get; set; } = new List<string>();
 
         public override string ToString()
         {
-            return $"Traveler: {TravelerName}\tEvent: {EventName}\nWhen: {StartDateTime}\t{EndDateTime}";
+            return $"Traveler: {UserName}\tEvent: {EventName}\nWhen: {StartDateTime}\t{EndDateTime}\n{Duration}\t{IsAbroad}";
 
         }
     }
-    class ActivityType
+
+    public class SkiEvent : Event
     {
-        public string Name { get; private set; }
-        public ActivityType(string name)
+        public SkiEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
         {
-            Name = name;
         }
-    }
 
-
-    class ItemToPack
-    {
-        public string Name { get; set; }
-
-        public ItemToPack(string name)
+        public override void AddDefaultItems()
         {
-            Name = name;
+            Items.Add("ski");
+        }
+    }
+    public class CyclingEvent : Event
+    {
+        public CyclingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        {
+        }
+
+        public override void AddDefaultItems()
+        {
+            Items.Add("bike"); 
+        }
+    }
+    public class ToSeaEvent : Event
+    {
+        public ToSeaEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        {
+        }
+
+        public override void AddDefaultItems()
+        {
+            Items.Add("bathingSuit");
+            Items.Add("sunglasses");
         }
     }
 
-    class ItemList
+    public class HikingEvent : Event
     {
-        public string Name { get; set; }
-        public List<ItemToPack> Items { get; set; } = new List<ItemToPack>();
+        public HikingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        {
+        }
+
+        public override void AddDefaultItems()
+        {
+            Items.Add("hikingGear");
+        }
     }
+
+
 
     enum ActivityLength { Day, Weekend, MoreDays }
 
@@ -56,8 +100,6 @@ namespace Things4Trip
         static void Main(string[] args)
         {
             Console.WriteLine("Things4Trip01");
-
-            //MyEventSpecification myEventSpecification = new MyEventSpecification(traveventName, );
 
 
             string travelerName = ReadString("your name: ");
@@ -70,24 +112,25 @@ namespace Things4Trip
 
             Console.WriteLine($"You even {eventName} starts {startDateTime} and ends {endDateTime}");
 
-            static string ReadString(string message)
-            {
-                Console.WriteLine("Enter " + message);
-                return Console.ReadLine();
-            }
 
-            static DateTime ReadDateTime(string message)
-            {
-                Console.WriteLine($"Enter" + message);
-                bool isDate = DateTime.TryParse(Console.ReadLine(),out DateTime result);
-                while (isDate == false)
-                { 
-                    Console.WriteLine("Incorrect date, please enter valid date/time: ");
-                    isDate = DateTime.TryParse(Console.ReadLine(), out result);
-                }
-                return result;
+        }
+        static string ReadString(string message)
+        {
+            Console.WriteLine("Enter " + message);
+            return Console.ReadLine();
+        }
 
+        static DateTime ReadDateTime(string message)
+        {
+            Console.WriteLine($"Enter" + message);
+            bool isDate = DateTime.TryParse(Console.ReadLine(), out DateTime result);
+            while (isDate == false)
+            {
+                Console.WriteLine("Incorrect date, please enter valid date/time: ");
+                isDate = DateTime.TryParse(Console.ReadLine(), out result);
             }
+            return result;
+
         }
     }
 }
