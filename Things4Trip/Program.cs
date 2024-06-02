@@ -121,7 +121,7 @@ namespace Things4Trip
 
         static DateTime ReadDateTime(string message)
         {
-            Console.WriteLine($"Enter" + message);
+            Console.WriteLine($"Enter " + message);
             bool isDate = DateTime.TryParse(Console.ReadLine(), out DateTime result);
             while (isDate == false)
             {
