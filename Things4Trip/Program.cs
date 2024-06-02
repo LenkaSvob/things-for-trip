@@ -36,13 +36,12 @@ namespace Things4Trip
         public override string ToString()
         {
             return $"Traveler: {UserName}\tEvent: {EventName}\nWhen: {StartDateTime}\t{EndDateTime}\n{Duration}\t{IsAbroad}";
-
         }
     }
 
     public class SkiEvent : Event
     {
-        public SkiEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+        public SkiEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
             : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
         {
         }
@@ -54,19 +53,19 @@ namespace Things4Trip
     }
     public class CyclingEvent : Event
     {
-        public CyclingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+        public CyclingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
             : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
         {
         }
 
         public override void AddDefaultItems()
         {
-            Items.Add("bike"); 
+            Items.Add("bike");
         }
     }
     public class ToSeaEvent : Event
     {
-        public ToSeaEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+        public ToSeaEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
             : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
         {
         }
@@ -80,7 +79,7 @@ namespace Things4Trip
 
     public class HikingEvent : Event
     {
-        public HikingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad) 
+        public HikingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
             : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
         {
         }
@@ -91,9 +90,6 @@ namespace Things4Trip
         }
     }
 
-
-
-    enum ActivityLength { Day, Weekend, MoreDays }
 
     class Program
     {
@@ -110,7 +106,10 @@ namespace Things4Trip
             DateTime startDateTime = ReadDateTime("start day/time of your event: ");
             DateTime endDateTime = ReadDateTime("end day/time of your event: ");
 
-            Console.WriteLine($"You even {eventName} starts {startDateTime} and ends {endDateTime}");
+            SkiEvent firstEvent = new SkiEvent("Lenka", "Snezka", new DateTime(2024, 6, 2), DateTime.Today, "15", true);
+            HikingEvent secondEvent = new HikingEvent("Lenka", "prochazka", DateTime.Today, DateTime.Today, "1", false);
+
+            Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
 
 
         }
