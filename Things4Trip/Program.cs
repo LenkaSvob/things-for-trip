@@ -21,17 +21,21 @@ namespace Things4Trip
             EndDateTime = endDateTime;
             Duration = duration;
             IsAbroad = isAbroad;
-            string[] itemsForAllEvents = new string[] { "keys", "phone", "condom" };
+            string[] itemsForAllEvents = new string[] { "keys", "phone", "money", "ID Card" };
             Items.AddRange(itemsForAllEvents);
+            AddDefaultItems();
             if (isAbroad)
             {
-                string[] itemsForAbroadEvent = new string[] { "passport", "travelInsurance", "Vaccinations", "foreignCurrency" };
+                string[] itemsForAbroadEvent = new string[] { "passport", "travel insurance", "vaccinations", "foreign currency" };
                 Items.AddRange(itemsForAbroadEvent);
             }
+
         }
 
         public abstract void AddDefaultItems();
         public List<string> Items { get; set; } = new List<string>();
+
+
 
         public override string ToString()
         {
@@ -90,26 +94,26 @@ namespace Things4Trip
         }
     }
 
-
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Things4Trip01");
+            //Console.WriteLine("Things4Trip01");
 
 
-            string travelerName = ReadString("your name: ");
-            Console.Write($"Welcome {travelerName} to program Things4Trip. ");
+            //string travelerName = ReadString("your name: ");
+            //Console.Write($"Welcome {travelerName} to program Things4Trip. ");
 
-            string eventName = ReadString("your event name: ");
+            //string eventName = ReadString("your event name: ");
 
-            DateTime startDateTime = ReadDateTime("start day/time of your event: ");
-            DateTime endDateTime = ReadDateTime("end day/time of your event: ");
+            //DateTime startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
+            //DateTime endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
 
             SkiEvent firstEvent = new SkiEvent("Lenka", "Snezka", new DateTime(2024, 6, 2), DateTime.Today, "15", true);
+
             HikingEvent secondEvent = new HikingEvent("Lenka", "prochazka", DateTime.Today, DateTime.Today, "1", false);
 
-            Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
+            //Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
 
 
         }
