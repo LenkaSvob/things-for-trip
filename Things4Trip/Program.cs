@@ -41,7 +41,7 @@ namespace Things4Trip
 
 
             var input = Convert.ToInt32(Console.ReadLine());
-              while (!(input > 0 && input <= 6))
+            while (!(input > 0 && input <= 6))
             {
                 Console.WriteLine("Enter valid option (select number 1-6)");
                 input = Convert.ToInt32(Console.ReadLine());
@@ -81,20 +81,45 @@ namespace Things4Trip
                 Console.WriteLine(item);
             }
 
+            Console.WriteLine("To add item to the list enter 'A', remove 'R', 'S' for safe,  'X' for exit .");
+            string action = Console.ReadLine();
+
+            if (action == "A")
+            {
+                while (true)
+                {
+                    Console.Write("Enter new item: ");
+                    var newItem = (Console.ReadLine());
+                    if (string.IsNullOrWhiteSpace(newItem))
+                        break;
+                    newEvent.Items.Add(newItem);
+
+                }
+            }
+            //else if (action == "R")
+            //{
+            //    while (true)
+            //    {
+            //        Console.Write("Enter item to remove: ");
+            //        newEvent.Items.Add(Console.ReadLine());
+            //    }
+
+            //}
+            //else if (action == "C")
+            //{
+
+            //}
+            //else if ()
+            //{ 
+
+            //}
+
+            else
+            {
+                Console.WriteLine("Incorrect input.");
+            }
 
 
-
-
-            //        Console.WriteLine("Current items in the list: ");
-
-            //        Event.
-            //                    var Items = new List<string>();
-            //string input = Console.ReadLine();
-            //        while (true)
-            //        {
-            //            if(Items.Contains(input))
-            //            Console.WriteLine("Enter item to the list or hit Enter to exit Item list.");
-            //        }
 
 
         }
