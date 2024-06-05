@@ -129,18 +129,26 @@ namespace Things4Trip
 
             string userName = ReadString("your name: ");
             Console.Write($"Welcome {userName} to program Things4Trip. ");
+            Console.WriteLine();
 
             string eventName = ReadString("your event name: ");
 
             DateTime startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
             DateTime endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
 
+            while (startDateTime > endDateTime)
+            {
+                Console.WriteLine("End date must be higher than Start date. Enter again.");
+                startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
+                endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
+            }
+
             Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
 
             string duration = ReadString("duration time in days: ");
 
             string isItAbroad = ReadString("'yes' for event abroad and 'no' for domestic event.  ");
-            bool isAbroad = isItAbroad == "yes" ? true : false;
+            bool isAbroad = isItAbroad.ToLower() == "yes" ? true : false;
 
 
             Console.WriteLine("Enter the number of chosen event: 1.Hiking ,2. Cycling, 3. Fitness/other sport, 4. Social, 5. Ski, 6. To Sea. ");
@@ -184,7 +192,7 @@ namespace Things4Trip
 
             //        if (!string.IsNullOrWhiteSpace(input)) 
             //        { 
-                        //        }
+            //        }
 
 
             //        Console.WriteLine("Current items in the list: ");
