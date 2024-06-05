@@ -5,124 +5,6 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Things4Trip
 {
-    public abstract class Event
-    {
-        public string UserName { get; private set; }
-        public string EventName { get; private set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
-        public string Duration { get; set; }
-        public bool IsAbroad { get; set; }
-
-        public Event(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
-        {
-            UserName = userName;
-            EventName = eventName;
-            StartDateTime = startDateTime;
-            EndDateTime = endDateTime;
-            //Duration = duration;
-            IsAbroad = isAbroad;
-            if ((EndDateTime - StartDateTime).TotalDays > 1)
-            {
-                Items.Add("basic hygiene items (toothbrush, ...)");
-            }
-            string[] itemsForAllEvents = new string[] { "keys", "phone", "money", "ID Card", "glasses" };
-            Items.AddRange(itemsForAllEvents);
-            AddDefaultItems();
-            if (isAbroad)
-            {
-                string[] itemsForAbroadEvent = new string[] { "passport", "travel insurance", "vaccinations", "foreign currency" };
-                Items.AddRange(itemsForAbroadEvent);
-            }
-
-        }
-
-        public abstract void AddDefaultItems();
-        public List<string> Items { get; set; } = new List<string>();
-
-
-
-        public override string ToString()
-        {
-            return $"Traveler: {UserName}\tEvent: {EventName}\nWhen: {StartDateTime}\t{EndDateTime}\n{Duration}\t{IsAbroad}";
-        }
-    }
-
-    public class SkiEvent : Event
-    {
-        public SkiEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime,  isAbroad)
-        {
-        }
-
-        public override void AddDefaultItems()
-        {
-            Items.AddRange(new string[] { "helmet", "poles", "skis" });
-        }
-    }
-    public class CyclingEvent : Event
-    {
-        public CyclingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
-        {
-        }
-
-        public override void AddDefaultItems()
-        {
-            Items.AddRange(new string[] { "helmet", "bike" });
-        }
-    }
-    public class ToSeaEvent : Event
-    {
-        public ToSeaEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
-        {
-        }
-
-        public override void AddDefaultItems()
-        {
-            Items.Add("bathing suit");
-            Items.Add("sunglasses");
-        }
-    }
-
-    public class HikingEvent : Event
-    {
-        public HikingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
-        {
-        }
-
-        public override void AddDefaultItems()
-        {
-            Items.Add("hiking gear");
-        }
-    }
-
-    public class SocialEvent : Event
-    {
-        public SocialEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
-        {
-        }
-
-        public override void AddDefaultItems()
-        {
-            Items.Add(" ");
-        }
-    }
-    public class FitnessEvent : Event
-    {
-        public FitnessEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
-        {
-        }
-
-        public override void AddDefaultItems()
-        {
-            Items.Add("fitness gear");
-        }
-    }
 
     class Program
     {
@@ -157,7 +39,14 @@ namespace Things4Trip
 
             Console.WriteLine("Enter the number of chosen event: 1.Hiking ,2. Cycling, 3. Fitness/other sport, 4. Social, 5. Ski, 6. To Sea. ");
 
+
             var input = Convert.ToInt32(Console.ReadLine());
+              while (!(input > 0 && input <= 6))
+            {
+                Console.WriteLine("Enter valid option (select number 1-6)");
+                input = Convert.ToInt32(Console.ReadLine());
+            }
+
             Event newEvent = null;
             switch (input)
             {
@@ -194,9 +83,6 @@ namespace Things4Trip
 
 
 
-            //        if (!string.IsNullOrWhiteSpace(input)) 
-            //        { 
-            //        }
 
 
             //        Console.WriteLine("Current items in the list: ");
