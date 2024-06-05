@@ -14,15 +14,19 @@ namespace Things4Trip
         public string Duration { get; set; }
         public bool IsAbroad { get; set; }
 
-        public Event(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
+        public Event(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
         {
             UserName = userName;
             EventName = eventName;
             StartDateTime = startDateTime;
             EndDateTime = endDateTime;
-            Duration = duration;
+            //Duration = duration;
             IsAbroad = isAbroad;
-            string[] itemsForAllEvents = new string[] { "keys", "phone", "money", "ID Card", "basic hygiene items", "glasses" };
+            if ((EndDateTime - StartDateTime).TotalDays > 1)
+            {
+                Items.Add("basic hygiene items (toothbrush, ...)");
+            }
+            string[] itemsForAllEvents = new string[] { "keys", "phone", "money", "ID Card", "glasses" };
             Items.AddRange(itemsForAllEvents);
             AddDefaultItems();
             if (isAbroad)
@@ -46,8 +50,8 @@ namespace Things4Trip
 
     public class SkiEvent : Event
     {
-        public SkiEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        public SkiEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
+            : base(userName, eventName, startDateTime, endDateTime,  isAbroad)
         {
         }
 
@@ -58,8 +62,8 @@ namespace Things4Trip
     }
     public class CyclingEvent : Event
     {
-        public CyclingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        public CyclingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
+            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
         {
         }
 
@@ -70,8 +74,8 @@ namespace Things4Trip
     }
     public class ToSeaEvent : Event
     {
-        public ToSeaEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        public ToSeaEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
+            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
         {
         }
 
@@ -84,8 +88,8 @@ namespace Things4Trip
 
     public class HikingEvent : Event
     {
-        public HikingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        public HikingEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
+            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
         {
         }
 
@@ -97,8 +101,8 @@ namespace Things4Trip
 
     public class SocialEvent : Event
     {
-        public SocialEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        public SocialEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
+            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
         {
         }
 
@@ -109,8 +113,8 @@ namespace Things4Trip
     }
     public class FitnessEvent : Event
     {
-        public FitnessEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, string duration, bool isAbroad)
-            : base(userName, eventName, startDateTime, endDateTime, duration, isAbroad)
+        public FitnessEvent(string userName, string eventName, DateTime startDateTime, DateTime endDateTime, bool isAbroad)
+            : base(userName, eventName, startDateTime, endDateTime, isAbroad)
         {
         }
 
@@ -145,7 +149,7 @@ namespace Things4Trip
 
             Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
 
-            string duration = ReadString("duration time in days: ");
+            //string duration = ReadString("duration time in days: "); to be added later
 
             string isItAbroad = ReadString("'yes' for event abroad and 'no' for domestic event.  ");
             bool isAbroad = isItAbroad.ToLower() == "yes" ? true : false;
@@ -158,22 +162,22 @@ namespace Things4Trip
             switch (input)
             {
                 case 1:
-                    newEvent = new HikingEvent(userName, eventName, startDateTime, endDateTime, duration, isAbroad);
+                    newEvent = new HikingEvent(userName, eventName, startDateTime, endDateTime, isAbroad);
                     break;
                 case 2:
-                    newEvent = new CyclingEvent(userName, eventName, startDateTime, endDateTime, duration, isAbroad);
+                    newEvent = new CyclingEvent(userName, eventName, startDateTime, endDateTime, isAbroad);
                     break;
                 case 3:
-                    newEvent = new FitnessEvent(userName, eventName, startDateTime, endDateTime, duration, isAbroad);
+                    newEvent = new FitnessEvent(userName, eventName, startDateTime, endDateTime, isAbroad);
                     break;
                 case 4:
-                    newEvent = new SocialEvent(userName, eventName, startDateTime, endDateTime, duration, isAbroad);
+                    newEvent = new SocialEvent(userName, eventName, startDateTime, endDateTime, isAbroad);
                     break;
                 case 5:
-                    newEvent = new SkiEvent(userName, eventName, startDateTime, endDateTime, duration, isAbroad);
+                    newEvent = new SkiEvent(userName, eventName, startDateTime, endDateTime, isAbroad);
                     break;
                 case 6:
-                    newEvent = new ToSeaEvent(userName, eventName, startDateTime, endDateTime, duration, isAbroad);
+                    newEvent = new ToSeaEvent(userName, eventName, startDateTime, endDateTime, isAbroad);
                     break;
                 default:
                     { Console.WriteLine("Invalid option, please choose number from 1 to 6."); }
