@@ -28,7 +28,7 @@ namespace Things4Trip
                 startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
                 endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
             }
-            
+
 
             Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
 
@@ -82,21 +82,25 @@ namespace Things4Trip
                 Console.WriteLine(item);
             }
 
-            Console.WriteLine("To add item to the list enter 'A', remove 'R', 'S' for safe,  'X' for exit .");
-            string action = Console.ReadLine();
+            Console.WriteLine();
 
-            if (action == "A")
-            {
-                while (true)
-                {
-                    Console.Write("Enter new item: ");
-                    var newItem = (Console.ReadLine());
-                    if (string.IsNullOrWhiteSpace(newItem))
-                        break;
-                    newEvent.Items.Add(newItem);
+            PrintMenuOptions();
 
-                }
-            }
+            //Console.WriteLine("To add item to the list enter 'A', remove 'R', 'S' for safe,  'X' for exit .");
+            //string action = Console.ReadLine();
+
+            //if (action == "A")
+            //{
+            //    while (true)
+            //    {
+            //        Console.Write("Enter new item: ");
+            //        var newItem = (Console.ReadLine());
+            //        if (string.IsNullOrWhiteSpace(newItem))
+            //            break;
+            //        newEvent.Items.Add(newItem);
+
+            //    }
+            //}
             //else if (action == "R")
             //{
             //    while (true)
@@ -115,15 +119,64 @@ namespace Things4Trip
 
             //}
 
-            else
-            {
-                Console.WriteLine("Incorrect input.");
-            }
+            //else
+            //{
+            //    Console.WriteLine("Incorrect input.");
+            //}
 
-
-
+            Console.ReadLine();
 
         }
+
+        public static void PrintMenuOptions()
+        {
+            string[] menuOptions = new string[]
+                {
+                    "Print all items",
+                    "Add item",
+                    "Remove item",
+                    "Exit",
+                };
+
+            for (int i = 0; i < menuOptions.Length; i++)
+            {
+                Console.WriteLine(i + 1 + ". " + menuOptions[i]);
+            }
+
+            Console.Write("Enter your menu option: ");
+        }
+
+        //bool tryParse = int.TryParse(Console.ReadLine(), out int menuOption);
+
+        //if (tryParse)
+        //{
+        //    if (menuOption == 1)
+        //    {
+        //        PrintAll();
+        //    }
+        //    else if (menuOption == 2)
+        //    {
+        //        AddItem();
+        //    }
+        //    else if (menuOption == 3)
+        //    {
+        //        SearchItem();
+        //    }
+        //    else if (menuOption == 4)
+        //    {
+        //        RemoveItem();
+        //    }
+
+        //    if (menuOption >= 1 && menuOption <= menuOptions.Length - 1)
+        //    {
+        //        Menu();
+        //    }
+        //}
+        //else
+        //{
+        //    OutputMessage("Incorrect menu choice.");
+        //    Menu();
+        //}
 
         static string ReadString(string message)
         {
