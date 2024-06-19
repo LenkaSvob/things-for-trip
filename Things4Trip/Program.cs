@@ -30,8 +30,6 @@ namespace Things4Trip
             }
 
 
-            Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
-
             //string duration = ReadString("duration time in days: "); to be added later
 
             string isItAbroad = ReadString("'yes' for event abroad and 'no' for domestic event.  ");
@@ -40,13 +38,16 @@ namespace Things4Trip
 
             Console.WriteLine("Enter the number of chosen event: 1.Hiking ,2. Cycling, 3. Fitness/other sport, 4. Social, 5. Ski, 6. To Sea. ");
 
-
             var input = Convert.ToInt32(Console.ReadLine());
             while (!(input > 0 && input <= 6))
             {
                 Console.WriteLine("Enter valid option (select number 1-6)");
                 input = Convert.ToInt32(Console.ReadLine());
             }
+
+            Console.Clear();
+
+            Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
 
             Event newEvent = null;
             switch (input)
@@ -84,7 +85,9 @@ namespace Things4Trip
 
             Console.WriteLine();
 
-            PrintMenuOptions();
+            var itemManager = new ItemManager(newEvent);
+
+            itemManager.PrintMenuOptions();
 
             //Console.WriteLine("To add item to the list enter 'A', remove 'R', 'S' for safe,  'X' for exit .");
             //string action = Console.ReadLine();
@@ -124,27 +127,13 @@ namespace Things4Trip
             //    Console.WriteLine("Incorrect input.");
             //}
 
+            Console.WriteLine("Goodbye!");
+
             Console.ReadLine();
 
         }
 
-        public static void PrintMenuOptions()
-        {
-            string[] menuOptions = new string[]
-                {
-                    "Print all items",
-                    "Add item",
-                    "Remove item",
-                    "Exit",
-                };
-
-            for (int i = 0; i < menuOptions.Length; i++)
-            {
-                Console.WriteLine(i + 1 + ". " + menuOptions[i]);
-            }
-
-            Console.Write("Enter your menu option: ");
-        }
+        
 
         //bool tryParse = int.TryParse(Console.ReadLine(), out int menuOption);
 
@@ -158,10 +147,7 @@ namespace Things4Trip
         //    {
         //        AddItem();
         //    }
-        //    else if (menuOption == 3)
-        //    {
-        //        SearchItem();
-        //    }
+        //   
         //    else if (menuOption == 4)
         //    {
         //        RemoveItem();
