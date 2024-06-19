@@ -19,14 +19,14 @@ namespace Things4Trip
 
             string eventName = ReadString("your event name: ");
 
-            DateTime startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
-            DateTime endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
+            DateTime startDateTime = ReadDateTime("start day/time of your event (mm/dd/yy): ");
+            DateTime endDateTime = ReadDateTime("end day/time of your event (mm/dd/yy): ");
 
             while (startDateTime > endDateTime || startDateTime < DateTime.Today)
             {
                 Console.WriteLine("You have entered invalid start and/or end date.");
-                startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
-                endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
+                startDateTime = ReadDateTime("start day/time of your event (mm/dd/yy): ");
+                endDateTime = ReadDateTime("end day/time of your event (mm/dd/yy): ");
             }
 
 
