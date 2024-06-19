@@ -22,12 +22,13 @@ namespace Things4Trip
             DateTime startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
             DateTime endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
 
-            while (startDateTime > endDateTime)
+            while (startDateTime > endDateTime || startDateTime < DateTime.Today)
             {
-                Console.WriteLine("End date must be higher than Start date. Enter again.");
+                Console.WriteLine("You have entered invalid start and/or end date.");
                 startDateTime = ReadDateTime("start day/time of your event (mm/dd/yyy): ");
                 endDateTime = ReadDateTime("end day/time of your event (mm/dd/yyy): ");
             }
+            
 
             Console.WriteLine($"Your event {eventName} starts {startDateTime} and ends {endDateTime}.");
 
