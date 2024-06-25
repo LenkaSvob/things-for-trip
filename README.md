@@ -1,6 +1,6 @@
 # Things for Trip
 
-Welcome to **Things for Trip**! This application is designed to helpyou organize and plan for your trips event efficiently. Whether you'repreparing for a weekend getaway or an extended vacation, **Things for Trip**ensures you don't forget any essential items and helps you manage your travelitineraries effortlessly (based on your input and preferences).
+Welcome to **Things for Trip**! This application is designed to helpyou organize and plan for your trips event efficiently. Whether you'repreparing for a weekend getaway or an extended vacation, **Things for Trip** ensures you don't forget any essential items and helps you manage your travelitineraries effortlessly (based on your input and preferences).
 
 ## Features
 
