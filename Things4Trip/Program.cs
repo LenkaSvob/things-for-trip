@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Things4Trip
 {
@@ -10,6 +11,7 @@ namespace Things4Trip
 
             try
             {
+                Console.WriteLine();
                 string userName = ReadString("your name: ");
                 Console.Write($"Welcome {userName} to program Things4Trip. ");
                 Console.WriteLine();
@@ -35,15 +37,14 @@ namespace Things4Trip
                     Console.WriteLine("Unknown option, considering event as domestic.");
                 }
 
-
-                Console.WriteLine("Enter the number of chosen event: 1.Hiking ,2. Cycling, 3. Fitness/other sport, 4. Social, 5. Ski, 6. To Sea. ");
-
-                var input = Convert.ToInt32(Console.ReadLine());
+                var input = ReadInt("the number of chosen event: 1.Hiking ,2. Cycling, 3. Fitness/other sport, 4. Social, 5. Ski, 6. To Sea. ");
+                
                 while (!(input > 0 && input <= 6))
                 {
                     Console.WriteLine("Enter valid option (select number 1-6)");
                     input = Convert.ToInt32(Console.ReadLine());
                 }
+
 
                 Console.Clear();
 
@@ -96,9 +97,21 @@ namespace Things4Trip
             }
             Console.ReadLine();
         }
+
+        static int ReadInt(string message)
+        {
+            Console.WriteLine($"Enter " + message);
+            bool isNumber = int.TryParse(Console.ReadLine(), out int result);
+            while (isNumber == false)
+            {
+                Console.WriteLine("Incorrect option choice, please enter valid number: ");
+                isNumber = int.TryParse(Console.ReadLine(), out result);
+            }
+            return result;
+        }
         static string ReadString(string message)
         {
-            Console.WriteLine("Enter " + message);
+            Console.Write("Enter " + message);
             return Console.ReadLine();
         }
 
