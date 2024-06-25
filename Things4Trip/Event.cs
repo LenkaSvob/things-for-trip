@@ -19,7 +19,7 @@
             IsAbroad = isAbroad;
             if ((EndDateTime - StartDateTime).TotalDays > 1)
             {
-                Items.Add("basic hygiene items (toothbrush, ...)");
+                Items.Add("basic hygiene items (toothbrush, pyjamas ...)");
             }
             string[] itemsForAllEvents = new string[] { "keys", "phone", "money", "ID Card", "glasses" };
             Items.AddRange(itemsForAllEvents);
