@@ -1,4 +1,6 @@
-﻿namespace Things4Trip
+﻿using System.ComponentModel;
+
+namespace Things4Trip
 {
     class Program
     {
@@ -28,6 +30,10 @@
 
                 string isItAbroad = ReadString("'yes' for event abroad and 'no' for domestic event.  ");
                 bool isAbroad = isItAbroad.ToLower() == "yes" ? true : false;
+                if (isItAbroad.ToLower() != "yes" && isItAbroad.ToLower() != "no" ) 
+                {
+                    Console.WriteLine("Unknown option, considering event as domestic.");
+                }
 
 
                 Console.WriteLine("Enter the number of chosen event: 1.Hiking ,2. Cycling, 3. Fitness/other sport, 4. Social, 5. Ski, 6. To Sea. ");
