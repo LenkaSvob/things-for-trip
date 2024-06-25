@@ -11,33 +11,34 @@ namespace Things4Trip
 
             try
             {
-                Console.WriteLine();
                 string userName = ReadString("your name: ");
-                Console.Write($"Welcome {userName} to program Things4Trip. ");
+                Console.WriteLine();
+                Console.Write($"Welcome {userName} to program Things4Trip! ");
                 Console.WriteLine();
 
                 string eventName = ReadString("your event name: ");
-
+                Console.WriteLine();
                 DateTime startDateTime = ReadDateTime("start day/time of your event (mm/dd/yy): ");
                 DateTime endDateTime = ReadDateTime("end day/time of your event (mm/dd/yy): ");
 
                 while (startDateTime > endDateTime || startDateTime < DateTime.Today)
                 {
-                    Console.WriteLine("You have entered invalid start and/or end date.");
+                    Console.Write("You have entered invalid start and/or end date.");
+                    Console.WriteLine();
                     startDateTime = ReadDateTime("start day/time of your event (mm/dd/yy): ");
                     endDateTime = ReadDateTime("end day/time of your event (mm/dd/yy): ");
                 }
 
                 //string duration = ReadString("duration time in days: "); to be added later
 
-                string isItAbroad = ReadString("'yes' for event abroad and 'no' for domestic event.  ");
+                string isItAbroad = ReadString("'yes' for event abroad and 'no' for domestic event:  ");
                 bool isAbroad = isItAbroad.ToLower() == "yes" ? true : false;
                 if (isItAbroad.ToLower() != "yes" && isItAbroad.ToLower() != "no" ) 
                 {
                     Console.WriteLine("Unknown option, considering event as domestic.");
                 }
-
-                var input = ReadInt("the number of chosen event: 1.Hiking ,2. Cycling, 3. Fitness/other sport, 4. Social, 5. Ski, 6. To Sea. ");
+                Console.WriteLine();
+                var input = ReadInt("the number of chosen event: '1' Hiking, '2' Cycling, '3' Fitness/other sport, '4' Social, '5' Ski, '6' To Sea: ");
                 
                 while (!(input > 0 && input <= 6))
                 {
@@ -100,7 +101,7 @@ namespace Things4Trip
 
         static int ReadInt(string message)
         {
-            Console.WriteLine($"Enter " + message);
+            Console.Write($"Enter " + message);
             bool isNumber = int.TryParse(Console.ReadLine(), out int result);
             while (isNumber == false)
             {
@@ -111,13 +112,14 @@ namespace Things4Trip
         }
         static string ReadString(string message)
         {
+            Console.WriteLine();
             Console.Write("Enter " + message);
             return Console.ReadLine();
         }
 
         static DateTime ReadDateTime(string message)
         {
-            Console.WriteLine($"Enter " + message);
+            Console.Write($"Enter " + message);
             bool isDate = DateTime.TryParse(Console.ReadLine(), out DateTime result);
             while (isDate == false)
             {
