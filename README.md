@@ -1,8 +1,8 @@
-**Things for Trip**
+# Things for Trip
 
 Welcome to **Things for Trip**! This application is designed to helpyou organize and plan for your trips event efficiently. Whether you'repreparing for a weekend getaway or an extended vacation, **Things for Trip**ensures you don't forget any essential items and helps you manage your travelitineraries effortlessly (based on your input and preferences).
 
-**Features**
+## Features
 
 *   **Packing List:** Create and manage packing lists to ensure you bring everything you need.
     
@@ -11,7 +11,7 @@ Welcome to **Things for Trip**! This application is designed to helpyou organize
 *   **Saving List:** for printing/ saving / sharing purposes (txt.file)
     
 
-**Planned features**
+## Planned features
 
 *   **Itinerary Planner:** Organize your travel plans with detailed itineraries, including activities, accommodations, and transportation.
     
